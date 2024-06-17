@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<body>
+  <h1>Gradient Color Generator</h1>
+  <section id="Container">
+   
+    <div id="btns">
+      <Button id="button1">#0b1670</Button>
+      <Button id="button2">#0b1670</Button>
+    </div>
+    <h4>Copy Your code here</h4>
+    <div class="CopyCode">
+     background-image:linear-gradient(to right,rgb(92,145,299),rgb(152,63,198))
+    </div>
+  </section>
+  <script>
+    let btn1=document.getElementById("button1");
+    let btn2=document.getElementById("button2");
+    let CopyCode=document.querySelector(".CopyCode");
+     let col1="#000",col2="#fff"
+    //common function for the color generator
+    const HekGenerate=()=>{
+      let s="#"
+      let hexColor="0123456789abcdef"
+      for (i=0;i<6;i++){
+      s=s+hexColor[Math.floor(Math.random()*16)];
+      }
+      return s
+    }
+    const button1Click = () => {
+       col1=HekGenerate()
+       //changing the text of button with hex code
+       btn1.innerHTML=col1
+       btn1.style.backgroundColor=col1
+       console.log(col1)
+       document.body.style.backgroundImage=`linear-gradient(to right,${col1},${col2})`;
+       CopyCode.innerHTML=`background-image:linear-gradient(to right,${col1},${col2})`;
+    }
+    const button2Click = () => {
+       col2=HekGenerate()
+       //changing the text of button with hex code 
+       btn2.innerHTML=col2
+       btn2.style.backgroundColor=col2
+       console.log(col2)
+       document.body.style.backgroundImage=`linear-gradient(to right,${col1},${col2})`;
+       CopyCode.innerHTML=`background-image:linear-gradient(to right,${col1},${col2})`;
+    }
+    const CopiedButton=()=>{
+      let z=CopyCode.innerHTML;
+      console.log(z)
+      navigator.clipboard.writeText(z)
+      alert("Code Copied To ClipBoard")
+    }
+    btn1.addEventListener('click',button1Click)
+    btn2.addEventListener('click',button2Click)
+    CopyCode.addEventListener('click',CopiedButton)
+  </script>
+</body>
+</html>
